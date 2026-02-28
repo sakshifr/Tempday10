@@ -45,6 +45,6 @@ public class ProductServiceImplJpa implements ProductService {
 
     @Override
     public List<Product> getAllProductByWarehouse(int warehouseId) {
-        return List.of(); // placeholder as instructed
+        return productRepository.findAllByWarehouse_WarehouseId(warehouseId);
     }
 }

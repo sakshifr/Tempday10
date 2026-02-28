@@ -11,4 +11,8 @@ public interface SupplierRepository extends JpaRepository<Supplier, Integer> {
     Supplier findBySupplierId(@Param("supplierId") int supplierId);
 
     void deleteBySupplierId(@Param("supplierId") int supplierId);
+
+    Supplier findByUsername(String username);
+
+    Supplier findByEmail(String email);
 }

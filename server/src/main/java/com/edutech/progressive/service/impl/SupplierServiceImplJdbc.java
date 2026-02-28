@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class SupplierServiceImplJdbc implements SupplierService {
    
     private SupplierDAO supplierDAO;
-
+    @Autowired
     public SupplierServiceImplJdbc(SupplierDAO supplierDAO) {
         this.supplierDAO = supplierDAO;
     }

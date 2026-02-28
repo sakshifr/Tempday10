@@ -1,6 +1,7 @@
 package com.edutech.progressive.service.impl;
 
 import com.edutech.progressive.entity.Supplier;
+import com.edutech.progressive.exception.SupplierAlreadyExistsException;
 import com.edutech.progressive.repository.SupplierRepository;
 import com.edutech.progressive.service.SupplierService;
 import org.springframework.stereotype.Service;
@@ -25,8 +26,16 @@ public class SupplierServiceImplJpa implements SupplierService {
 
     @Override
     public int addSupplier(Supplier supplier) {
-        Supplier saved = supplierRepository.save(supplier);
-        return saved.getSupplierId();
+       Supplier oldUser = supplierRepository.findByUsername(supplier.getUsername());
+        if (oldUser != null) {
+            throw new SupplierAlreadyExistsException("User name Is Unavailable: " + supplier.getUsername());
+        }
+        Supplier existingEmail = supplierRepository.findByEmail(supplier.getEmail());
+        if (existingEmail != null) {
+            throw new SupplierAlreadyExistsException("User with the given email address already exists: " + supplier.getEmail());
+        }
+        // supplier.setPassword(passwordEncoder.encode(supplier.getPassword()));
+        return supplierRepository.save(supplier).getSupplierId();
     }
 
     @Override
