@@ -21,12 +21,13 @@ import org.springframework.stereotype.Service;
 public class WarehouseServiceImplJpa implements WarehouseService {
 
     @Autowired
-    ProductRepository productRepository; 
+    ProductRepository productRepository;
+
     @Autowired
     ShipmentRepository shipmentRepository;
 
     private WarehouseRepository warehouseRepository;
-    
+
     @Autowired
     public WarehouseServiceImplJpa(WarehouseRepository warehouseRepository) {
         this.warehouseRepository = warehouseRepository;

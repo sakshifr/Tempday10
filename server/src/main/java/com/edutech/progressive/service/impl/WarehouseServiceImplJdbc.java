@@ -8,10 +8,6 @@ import java.sql.SQLException;
 import java.util.Comparator;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
-
-@Service
 public class WarehouseServiceImplJdbc implements WarehouseService {
 
     private WarehouseDAO warehouseDAO;

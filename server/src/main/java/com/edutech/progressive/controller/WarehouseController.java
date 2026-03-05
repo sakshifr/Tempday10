@@ -7,12 +7,11 @@ import com.edutech.progressive.service.impl.WarehouseServiceImplJpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.List;
-
-
 
 @RestController
 @RequestMapping("/warehouse")
@@ -20,12 +19,6 @@ public class WarehouseController {
 
     @Autowired
     WarehouseServiceImplJpa warehouseServiceImplJpa;
-
-    
-
-    public WarehouseController(WarehouseServiceImplJpa warehouseServiceImplJpa) {
-        this.warehouseServiceImplJpa = warehouseServiceImplJpa;
-    }
 
     @GetMapping
     public ResponseEntity<List<Warehouse>> getAllWarehouses() throws SQLException {
@@ -53,7 +46,7 @@ public class WarehouseController {
             int warehouseId = warehouseServiceImplJpa.addWarehouse(warehouse);
             return new ResponseEntity<>(warehouseId, HttpStatus.CREATED);
         } catch (SQLException e) {
-            return new ResponseEntity<>(-1, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -77,6 +70,9 @@ public class WarehouseController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+
 
     @GetMapping("/supplier/{supplierId}")
     public ResponseEntity<?> getWarehousesBySupplier(@PathVariable int supplierId) throws SQLException {

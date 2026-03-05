@@ -34,7 +34,7 @@ public class ProductController {
     }
  
     @GetMapping("/{productId}")
-    public ResponseEntity<Product> getProductById(@PathVariable int productId) {
+    public ResponseEntity<Product> getProductById(@PathVariable int productId) throws SQLException {
         Product product = productServiceImplJpa.getProductById(productId);
         if (product != null) {
             return new ResponseEntity<>(product, HttpStatus.OK);

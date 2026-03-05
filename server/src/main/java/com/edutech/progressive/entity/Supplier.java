@@ -2,14 +2,17 @@ package com.edutech.progressive.entity;
 
 import javax.persistence.*;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 @Entity
-@Table(name = "supplier")
 public class Supplier implements Comparable<Supplier> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int supplierId;
-
     private String supplierName;
     private String email;
     private String phone;
@@ -21,9 +24,7 @@ public class Supplier implements Comparable<Supplier> {
     public Supplier() {
     }
 
-    public Supplier(int supplierId, String supplierName, String email,
-                    String phone, String address, String username,
-                    String password, String role) {
+    public Supplier(int supplierId, String supplierName, String email, String phone, String address, String username, String password, String role) {
         this.supplierId = supplierId;
         this.supplierName = supplierName;
         this.email = email;
@@ -34,9 +35,8 @@ public class Supplier implements Comparable<Supplier> {
         this.role = role;
     }
 
-    @Override
-    public int compareTo(Supplier o) {
-        return this.supplierName.compareToIgnoreCase(o.supplierName);
+    public String getEmail() {
+        return email;
     }
 
     public int getSupplierId() {
@@ -55,8 +55,20 @@ public class Supplier implements Comparable<Supplier> {
         this.supplierName = supplierName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setEmail(String email) {
@@ -79,27 +91,17 @@ public class Supplier implements Comparable<Supplier> {
         this.address = address;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
- 
-    public void setPassword(String password) {
-        this.password = password;
-    }
- 
     public String getRole() {
         return role;
     }
- 
+
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public int compareTo(Supplier otherSupplier) {
+        // Implement comparison logic based on account balance
+        return this.getSupplierName().compareTo(otherSupplier.getSupplierName());
     }
 }

@@ -3,13 +3,11 @@ package com.edutech.progressive.service.impl;
 import com.edutech.progressive.entity.Warehouse;
 import com.edutech.progressive.service.WarehouseService;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-
 
 @Service
 public class WarehouseServiceImplArraylist implements WarehouseService {
